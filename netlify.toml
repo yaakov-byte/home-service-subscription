@@ -1,41 +1,41 @@
 [build]
-  publish = "."
-  functions = "netlify/functions"
+publish = "."
+functions = "netlify/functions"
 
 [functions]
-  node_bundler = "esbuild"
+node_bundler = "esbuild"
 
 # Redirect /enroll to the main page
 [[redirects]]
-  from = "/enroll"
-  to = "/index.html"
-  status = 200
+from = "/enroll"
+to = "/index.html"
+status = 200
 
 [[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 200
+from = "/terms"
+to = "/terms.html"
+status = 200
 
 [[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
+from = "/privacy"
+to = "/privacy.html"
+status = 200
 
 [[redirects]]
-  from = "/cancellation"
-  to = "/cancellation.html"
-  status = 200
+from = "/cancellation"
+to = "/cancellation.html"
+status = 200
 
 [[redirects]]
-  from = "/contact"
-  to = "/contact.html"
-  status = 200
+from = "/contact"
+to = "/contact.html"
+status = 200
 
 # Headers for security
 [[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' https://core.spreedly.com; frame-src https://core.spreedly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://core.spreedly.com;"
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://core.spreedly.com https://www.datadoghq-browser-agent.com; frame-src https://core.spreedly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://core.spreedly.com https://www.datadoghq-browser-agent.com;"
