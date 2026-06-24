@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cancel Membership - Home Service Subscription</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+          :root { --midnight: #1a1f2e; --warm-white: #faf9f7; --cream: #f0ede8; --sage: #4a7c6f; --sage-light: #5d9e8d; --sage-pale: #e8f2ee; --text-primary: #1a1f2e; --text-secondary: #5a6072; --text-muted: #8a8fa0; --border: #d8d5cf; --error: #c44e4e; --cancel-red: #b8423a; --cancel-red-hover: #a03830; --cancel-red-pale: #fdf0ef; }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
+          .site-header { padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: white; }
+          .logo { font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 700; color: var(--midnight); text-decoration: none; letter-spacing: -0.02em; }
+          .logo span { color: var(--sage); }
+          .back-link { font-size: 0.85rem; color: var(--sage); text-decoration: none; font-weight: 500; }
+          .page-container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
+          .cancel-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; max-width: 480px; width: 100%; }
+          .cancel-card h1 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; color: var(--midnight); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+          .cancel-card .subtitle { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem; }
+          .field-group { margin-bottom: 1.25rem; }
+          .field-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.4rem; }
+          .field-group input { width: 100%; padding: 0.75rem 0.85rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-family: 'DM Sans', sans-serif; color: var(--text-primary); background: var(--warm-white); }
+          .field-group input:focus { outline: none; border-color: var(--sage); box-shadow: 0 0 0 3px var(--sage-pale); }
+          .cancel-btn { width: 100%; padding: 1rem; background: var(--cancel-red); color: white; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 700; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 0.5rem; }
+          .cancel-btn:hover { background: var(--cancel-red-hover); }
+          .cancel-btn:disabled { background: var(--text-muted); cursor: not-allowed; }
+          .info-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-top: 1rem; text-align: center; }
+          .confirm-step { display: none; }
+          .confirm-step.active { display: block; }
+          .confirm-warning { background: var(--cancel-red-pale); border: 1px solid #f0c6c3; border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem; }
+          .confirm-warning p { font-size: 0.9rem; color: var(--cancel-red); line-height: 1.6; font-weight: 500; }
+          .member-email { font-weight: 700; }
+          .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+          .btn-secondary { width: 100%; padding: 0.85rem; background: var(--cream); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+          .confirm-cancel-btn { width: 100%; padding: 0.85rem; background: var(--cancel-red); color: white; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+          .confirm-cancel-btn:hover { background: var(--cancel-red-hover); }
+          .confirm-cancel-btn:disabled { background: var(--text-muted); cursor: not-allowed; }
+          .status-msg { padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1rem; display: none; line-height: 1.5; }
+          .status-msg.error { display: block; background: #fef2f2; color: var(--error); border: 1px solid #fecaca; }
+          .status-msg.success { display: block; background: var(--sage-pale); color: var(--sage); border: 1px solid #a7d5c6; }
+          .success-state { display: none; text-align: center; }
+          .success-state.active { display: block; }
+          .success-icon { width: 56px; height: 56px; background: var(--cancel-red-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+          .success-icon svg { width: 26px; height: 26px; stroke: var(--cancel-red); stroke-width: 2.5; fill: none; }
+          .success-state h2 { font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 700; color: var(--midnight); margin-bottom: 0.75rem; }
+          .success-state p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.5rem; }
+          .refund-note { background: var(--sage-pale); border-radius: 8px; padding: 1rem; margin-top: 1.25rem; font-size: 0.85rem; color: var(--sage); line-height: 1.5; }
+          .data-note { margin-top: 1rem; font-size: 0.78rem; color: var(--text-muted); }
+          .site-footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.78rem; color: var(--text-muted); background: white; line-height: 1.7; }
+          .site-footer a { color: var(--text-secondary); text-decoration: underline; margin: 0 0.5rem; }
+          .footer-entity { font-weight: 600; color: var(--text-secondary); }
+          @media (max-width: 520px) { .cancel-card { padding: 1.75rem 1.25rem; } .btn-row { grid-template-columns: 1fr; } }
+        </style>
+  </head>
+  <body>
+      <header class="site-header">
+            <a href="/" class="logo">Home Service <span>Subscription</span></a>a>
+          <a href="/" class="back-link">Back to Home</a>a>
+      </header>header>
+    <main class="page-container">
+        <div class="cancel-card">
+              <div id="email-step">
+                      <h1>Cancel Membership</h1>
+                      <p class="subtitle">Enter the email address associated with your membership. No phone call required - your cancellation is processed immediately.</p>p>
+                      <div id="status-msg" class="status-msg"></div>div>
+                      <div class="field-group">
+                                <label for="cancel-email">Your email address</label>label>
+                                <input type="email" id="cancel-email" placeholder="name@example.com" autocomplete="email" required>
+                      </div>div>
+                      <button class="cancel-btn" onclick="lookupMembership()">Cancel My Membership</button>button>
+                      <p class="info-note">We will look up your membership and confirm before canceling. Your membership ends immediately and you will not be charged again.</p>p>
+              </div>div>
+              <div id="confirm-step" class="confirm-step">
+                      <h1>Confirm Cancellation</h1>
+                      <div class="confirm-warning">
+                                <p>You are about to cancel the membership for <span id="confirm-email" class="member-email"></span>. This action is immediate and cannot be undone.</p>
+                      </div>div>
+                      <div id="confirm-status" class="status-msg"></div>div>
+                      <div class="btn-row">
+                                <button class="btn-secondary" onclick="goBack()">Go Back</button>button>
+                                <button class="confirm-cancel-btn" id="confirm-btn" onclick="confirmCancel()">Yes, Cancel</button>button>
+                      </div>div>
+              </div>div>
+              <div id="success-state" class="success-state">
+                      <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg>svg></div>div>
+                      <h2>Membership Canceled</h2>
+                      <p>Your Home Service Subscription membership has been canceled. You will not be charged again.</p>
+                      <div id="refund-note" class="refund-note" style="display:none;"></div>div>
+                      <p class="data-note">Per our privacy policy, your personal data will be retained for 2 years after cancellation for chargeback and compliance purposes, then permanently deleted.</p>
+              </div>div>
+        </div>div>
+    </main>main>
+    <footer class="site-footer">
+        <span class="footer-entity">YY Business Solutions LLC</span> - Waterbury, CT<br>
+        <a href="/terms">Terms of Service</a>a>
+        <a href="/privacy">Privacy Policy</a>a>
+        <a href="/cancellation">Cancellation &amp; Refunds</a>a>
+        <a href="/contact">Contact</a>a>
+    </footer>footer>
+    <script>
+          const BACKEND_URL = '/.netlify/functions';
+          let memberEmail = '';
+          function showStatus(id, msg, type) { const el = document.getElementById(id); el.textContent = msg; el.className = 'status-msg ' + type; }
+          function hideStatus(id) { document.getElementById(id).className = 'status-msg'; }
+          function lookupMembership() {
+                  const email = document.getElementById('cancel-email').value.trim();
+                  if (!email) { showStatus('status-msg', 'Please enter your email address.', 'error'); return; }
+                  memberEmail = email;
+                  hideStatus('status-msg');
+                  document.getElementById('email-step').style.display = 'none';
+                  document.getElementById('confirm-step').classList.add('active');
+                  document.getElementById('confirm-email').textContent = email;
+          }
+          function goBack() {
+                  document.getElementById('confirm-step').classList.remove('active');
+                  document.getElementById('email-step').style.display = 'block';
+                  hideStatus('confirm-status');
+          }
+          async function confirmCancel() {
+                  const btn = document.getElementById('confirm-btn');
+                  btn.disabled = true; btn.textContent = 'Canceling...';
+                  hideStatus('confirm-status');
+                  try {
+                            const res = await fetch(BACKEND_URL + '/process-cancellation', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: memberEmail }) });
+                            const result = await res.json();
+                            if (result.success) {
+                                        document.getElementById('confirm-step').classList.remove('active');
+                                        document.getElementById('success-state').classList.add('active');
+                                        if (result.refund_eligible) { const n = document.getElementById('refund-note'); n.textContent = result.refund_note; n.style.display = 'block'; }
+                            } else {
+                                        showStatus('confirm-status', result.error || 'Unable to process cancellation. Please contact support.', 'error');
+                                        btn.disabled = false; btn.textContent = 'Yes, Cancel';
+                            }
+                  } catch (err) {
+                            showStatus('confirm-status', 'Something went wrong. Please try again or contact support@yybusinesssolutions.com.', 'error');
+                            btn.disabled = false; btn.textContent = 'Yes, Cancel';
+                  }
+          }
+          document.getElementById('cancel-email').addEventListener('keypress', function(e) { if (e.key === 'Enter') lookupMembership(); });
+    </script>
+  </body>
+</html>html>
+    </script></p></p></h1></h1></span>
+  </body>
+    </style></title>
+  </head>
