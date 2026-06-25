@@ -1,9 +1,10 @@
 {
-    "name": "home-service-subscription",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-          "@supabase/supabase-js": "^2.49.0",
-          "@netlify/functions": "^2.8.0"
-    }
+  "name": "home-service-subscription",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.0",
+    "@netlify/functions": "^2.8.0",
+    "nodemailer": "^6.9.0"
+  }
 }
