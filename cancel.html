@@ -55,49 +55,49 @@
   </head>
   <body>
       <header class="site-header">
-            <a href="/" class="logo">Home Service <span>Subscription</span></a>a>
-          <a href="/" class="back-link">Back to Home</a>a>
-      </header>header>
+            <a href="/" class="logo">Home Service <span>Subscription</span></a>
+          <a href="/" class="back-link">Back to Home</a>
+      </header>
     <main class="page-container">
         <div class="cancel-card">
               <div id="email-step">
                       <h1>Cancel Membership</h1>
-                      <p class="subtitle">Enter the email address associated with your membership. No phone call required - your cancellation is processed immediately.</p>p>
-                      <div id="status-msg" class="status-msg"></div>div>
+                      <p class="subtitle">Enter the email address associated with your membership. No phone call required - your cancellation is processed immediately.</p>
+                      <div id="status-msg" class="status-msg"></div>
                       <div class="field-group">
-                                <label for="cancel-email">Your email address</label>label>
+                                <label for="cancel-email">Your email address</label>
                                 <input type="email" id="cancel-email" placeholder="name@example.com" autocomplete="email" required>
-                      </div>div>
-                      <button class="cancel-btn" onclick="lookupMembership()">Cancel My Membership</button>button>
-                      <p class="info-note">We will look up your membership and confirm before canceling. Your membership ends immediately and you will not be charged again.</p>p>
-              </div>div>
+                      </div>
+                      <button class="cancel-btn" onclick="lookupMembership()">Cancel My Membership</button>
+                      <p class="info-note">We will look up your membership and confirm before canceling. Your membership ends immediately and you will not be charged again.</p>
+              </div>
               <div id="confirm-step" class="confirm-step">
                       <h1>Confirm Cancellation</h1>
                       <div class="confirm-warning">
                                 <p>You are about to cancel the membership for <span id="confirm-email" class="member-email"></span>. This action is immediate and cannot be undone.</p>
-                      </div>div>
-                      <div id="confirm-status" class="status-msg"></div>div>
+                      </div>
+                      <div id="confirm-status" class="status-msg"></div>
                       <div class="btn-row">
-                                <button class="btn-secondary" onclick="goBack()">Go Back</button>button>
-                                <button class="confirm-cancel-btn" id="confirm-btn" onclick="confirmCancel()">Yes, Cancel</button>button>
-                      </div>div>
-              </div>div>
+                                <button class="btn-secondary" onclick="goBack()">Go Back</button>
+                                <button class="confirm-cancel-btn" id="confirm-btn" onclick="confirmCancel()">Yes, Cancel</button>
+                      </div>
+              </div>
               <div id="success-state" class="success-state">
-                      <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg>svg></div>div>
+                      <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></div>
                       <h2>Membership Canceled</h2>
                       <p>Your Home Service Subscription membership has been canceled. You will not be charged again.</p>
-                      <div id="refund-note" class="refund-note" style="display:none;"></div>div>
+                      <div id="refund-note" class="refund-note" style="display:none;"></div>
                       <p class="data-note">Per our privacy policy, your personal data will be retained for 2 years after cancellation for chargeback and compliance purposes, then permanently deleted.</p>
-              </div>div>
-        </div>div>
-    </main>main>
+              </div>
+        </div>
+    </main>
     <footer class="site-footer">
         <span class="footer-entity">YY Business Solutions LLC</span> - Waterbury, CT<br>
-        <a href="/terms">Terms of Service</a>a>
-        <a href="/privacy">Privacy Policy</a>a>
-        <a href="/cancellation">Cancellation &amp; Refunds</a>a>
-        <a href="/contact">Contact</a>a>
-    </footer>footer>
+        <a href="/terms">Terms of Service</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/cancellation">Cancellation &amp; Refunds</a>
+        <a href="/contact">Contact</a>
+    </footer>
     <script>
           const BACKEND_URL = '/.netlify/functions';
           let memberEmail = '';
@@ -140,8 +140,4 @@
           document.getElementById('cancel-email').addEventListener('keypress', function(e) { if (e.key === 'Enter') lookupMembership(); });
     </script>
   </body>
-</html>html>
-    </script></p></p></h1></h1></span>
-  </body>
-    </style></title>
-  </head>
+</html>
